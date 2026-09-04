@@ -3,6 +3,7 @@ import AppKit
 
 /// Configures the host NSWindow to match the Immersive shell (hidden title bar, locked aspect, etc).
 struct WindowConfigurator: NSViewRepresentable {
+    var hudVisible: Bool = true
     var onWindow: ((NSWindow) -> Void)? = nil
 
     func makeNSView(context: Context) -> NSView {
@@ -26,5 +27,16 @@ struct WindowConfigurator: NSViewRepresentable {
         return view
     }
 
-    func updateNSView(_ nsView: NSView, context: Context) {}
+    func updateNSView(_ nsView: NSView, context: Context) {
+        guard let window = nsView.window else { return }
+        let targetAlpha: CGFloat = hudVisible ? 1 : 0
+        let duration = hudVisible ? 0.15 : 0.35
+        NSAnimationContext.runAnimationGroup { animationContext in
+            animationContext.duration = duration
+            [window.standardWindowButton(.closeButton),
+             window.standardWindowButton(.miniaturizeButton),
+             window.standardWindowButton(.zoomButton)]
+                .forEach { $0?.animator().alphaValue = targetAlpha }
+        }
+    }
 }
