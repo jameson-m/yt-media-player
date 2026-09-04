@@ -15,4 +15,4 @@ Native macOS-only SwiftUI mini player for YouTube background music/livestreams. 
 - **CI:** deferred. No GitHub Actions for now.
 
 ## Orchestration
-Builds are orchestrated from `~/orchestration-other/<date>-yt-media-player*/` (spec, task queue, logs, `scripts/build.sh` that spawns one Claude session per task). Worker sessions: read that package's `SPEC.md` + your task record; append-only JSONL logs; never edit existing lines. Don't start a build run without the user's go-ahead.
+Builds are orchestrated from `~/Developer/agent-orchestration` (separate repo): `runs/<date>-yt-media-player*/` (spec, task queue, logs — symlinked from `~/orchestration-other/<date>-yt-media-player*/`), `runner/` (the bun CLI that runs the queue), `docs/process.md` (the build methodology). Worker sessions: read the run package's `SPEC.md` + your task record; append-only JSONL logs; never edit existing lines. Don't start a build run without the user's go-ahead.
