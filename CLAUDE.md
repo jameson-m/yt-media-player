@@ -10,7 +10,7 @@ Native macOS-only SwiftUI mini player for YouTube background music/livestreams. 
 - **Min target:** macOS 26.0. Build with Xcode 26.x. Use `.glassEffect()` (no Material fallback needed).
 - **Project gen:** XcodeGen (`project.yml`). `*.xcodeproj` is gitignored; run `scripts/bootstrap.sh` to generate. Never hand-edit pbxproj.
 - **Identity:** bundle id `com.jamesonmcbride.YTMediaPlayer`, display name "YT Media Player".
-- **Git:** PRs target `main` directly (no integration branch). Commits SSH-signed (already configured; a commit that won't verify won't merge). Concise commit messages.
+- **Git:** PRs target `main` directly (no integration branch). Commits SSH-signed (already configured; a commit that won't verify won't merge). Commit messages: GitHub 50/72 style — imperative subject ≤ 50 chars, capitalized, no period; blank line; optional body wrapped at 72. No task-id or orchestration prefixes.
 - **Issues/PRs:** define GitHub issue first; 1 issue = 1 PR (exceptions allowed). Issue + PR descriptions/comments concise, plain language. Don't open the PR until the branch is ready.
 - **CI:** deferred. No GitHub Actions for now.
 
