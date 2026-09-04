@@ -6,5 +6,8 @@ struct YTMediaPlayerApp: App {
         Window("YT Media Player", id: "main") {
             ContentView()
         }
+        .windowStyle(.hiddenTitleBar)
+        .defaultSize(width: 480, height: 270)
+        .windowResizability(.contentMinSize)
     }
 }
