@@ -22,8 +22,15 @@ struct PlaceholderSceneView: View {
                 gradient
 
                 Circle()
-                    .fill(Color(hex: 0xFFF0C8).opacity(0.3))
-                    .frame(width: diameter * 2, height: diameter * 2)
+                    .fill(
+                        RadialGradient(
+                            colors: [Color(hex: 0xFFF0C8).opacity(0.35), Color(hex: 0xFFF0C8).opacity(0.0)],
+                            center: .center,
+                            startRadius: 0,
+                            endRadius: diameter * 0.9
+                        )
+                    )
+                    .frame(width: diameter * 1.8, height: diameter * 1.8)
                     .position(center)
 
                 Circle()
