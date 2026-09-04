@@ -1,0 +1,76 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>yt-media-player — design mockups</title>
+<link rel="stylesheet" href="glass.css"><script src="glass.js"></script>
+<style>
+body{justify-content:flex-start;padding-top:48px}
+header{max-width:1040px;width:100%;padding:0 4px}
+header h1{margin:0;font:700 26px/1.2 var(--font);letter-spacing:-.02em}
+header p{margin:6px 0 0;color:var(--text-2);font-size:14px;max-width:640px;line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;max-width:1040px;width:100%}
+.card{border-radius:20px;padding:12px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:10px;transition:transform .2s}
+.card:hover{transform:translateY(-2px)}
+.pv{position:relative;aspect-ratio:16/10;border-radius:12px;overflow:hidden;background:var(--ink);box-shadow:inset 0 0 0 .5px var(--ink-2)}
+.pv iframe{position:absolute;top:0;left:0;width:320%;height:320%;transform:scale(.3125);transform-origin:0 0;border:0;pointer-events:none}
+.card .n{display:flex;align-items:baseline;gap:8px;padding:0 4px}
+.card .n b{font:600 14px var(--font)}
+.card .n span{font:600 10px/1 var(--font);letter-spacing:.08em;text-transform:uppercase;color:var(--text-3)}
+.card p{margin:0;padding:0 4px 4px;font-size:12.5px;line-height:1.5;color:var(--text-2)}
+.principles{max-width:1040px;width:100%;border-radius:20px;padding:20px 24px;font-size:13px;line-height:1.6;color:var(--text-2)}
+.principles h2{margin:0 0 6px;font:600 15px var(--font);color:var(--text)}
+.principles ul{margin:0;padding-left:18px;columns:2;column-gap:32px}
+.principles li{margin:2px 0;break-inside:avoid}
+.principles b{color:var(--text);font-weight:600}
+/* Selected direction */
+.selected{max-width:1040px;width:100%;border-radius:20px;padding:26px 30px;display:flex;flex-wrap:wrap;gap:28px;align-items:center}
+.selected-info{flex:1;min-width:280px}
+.selected .tag{display:inline-block;font:700 10px/1 var(--font);letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-bottom:10px}
+.selected h2{margin:0 0 10px;font:700 24px/1.2 var(--font);letter-spacing:-.02em;color:var(--text)}
+.selected p{margin:0 0 18px;font-size:13.5px;line-height:1.6;color:var(--text-2);max-width:480px}
+.cta-row{display:flex;flex-wrap:wrap;gap:10px}
+.cta{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:999px;background:var(--glass-strong);box-shadow:inset 0 1px 0 var(--glass-line),0 0 0 .5px var(--ink-2);font:600 12.5px var(--font);text-decoration:none;color:var(--text);transition:transform .15s,filter .15s}
+.cta:hover{transform:translateY(-1px);filter:brightness(1.05)}
+.selected .pv{width:380px;flex:none}
+/* Round-1 grid */
+.section-h{max-width:1040px;width:100%;margin:4px 4px 0;font:600 15px var(--font);color:var(--text)}
+.card .n{position:relative}
+.card .n .badge{margin-left:auto;font:700 9px/1 var(--font);letter-spacing:.06em;text-transform:uppercase;padding:4px 7px 3px;border-radius:999px;background:var(--ink);color:var(--text-2)}
+.card .n .badge.chosen{color:var(--green)}
+.card.passed{opacity:.75}
+</style></head><body>
+<header>
+  <h1>yt-media-player · design mockups</h1>
+  <p>Five directions for a tiny native macOS mini player for YouTube background music. Same brief, different bets on what should be front and center. Click a card to open it full size. Toggle light/dark with the ◐ button.</p>
+</header>
+<div class="selected glass">
+  <div class="selected-info">
+    <span class="tag">Selected direction</span>
+    <h2>Immersive</h2>
+    <p>Video fills the window; Liquid Glass controls float over it and fade when idle. Channel switching is a small overlaid chip, not a persistent panel.</p>
+    <div class="cta-row">
+      <a class="cta" href="immersive/storyboard.html">Full storyboard →</a>
+      <a class="cta" href="immersive/system.html">System &amp; settings →</a>
+      <a class="cta" href="immersive/prototype.html">Interactive prototype →</a>
+    </div>
+  </div>
+  <div class="pv"><iframe src="immersive/storyboard.html?embed" tabindex="-1"></iframe></div>
+</div>
+<h2 class="section-h">Explorations (round 1)</h2>
+<div class="grid">
+  <a class="card glass passed" href="01-rail.html"><div class="pv"><iframe src="01-rail.html?embed" tabindex="-1"></iframe></div><div class="n"><b>Rail</b><span>01</span><span class="badge">Passed</span></div><p>The sketch made native — one floating glass rail with volume + transport, video as the hero.</p></a>
+  <a class="card glass" href="02-immersive.html"><div class="pv"><iframe src="02-immersive.html?embed" tabindex="-1"></iframe></div><div class="n"><b>Immersive</b><span>02</span><span class="badge chosen">Chosen</span></div><p>Video fills the window edge to edge; every control floats on glass and fades when idle.</p></a>
+  <a class="card glass passed" href="03-channel-dock.html"><div class="pv"><iframe src="03-channel-dock.html?embed" tabindex="-1"></iframe></div><div class="n"><b>Channel Dock</b><span>03</span><span class="badge">Passed</span></div><p>Favorites as TV channels in a left dock with live dots; classic three-zone transport bar.</p></a>
+  <a class="card glass passed" href="04-now-playing.html"><div class="pv"><iframe src="04-now-playing.html?embed" tabindex="-1"></iframe></div><div class="n"><b>Now Playing</b><span>04</span><span class="badge">Passed</span></div><p>Audio-first portrait card à la Music.app Mini Player; video is optional "album art".</p></a>
+  <a class="card glass" href="05-menu-bar.html"><div class="pv"><iframe src="05-menu-bar.html?embed" tabindex="-1"></iframe></div><div class="n"><b>Menu Bar</b><span>05</span><span class="badge">Kept as feature</span></div><p>No window — a menu bar popover with favorites + an optional floating keep-on-top pill.</p></a>
+</div>
+<div class="principles glass">
+  <h2>Shared principles across all five</h2>
+  <ul>
+    <li><b>Liquid Glass</b> — translucent layered surfaces with specular rims, concentric corner radii, controls floating above content rather than in chrome.</li>
+    <li><b>Favorites are channels</b> — Prev/Next steps through saved streams, not YouTube's queue. Live status is polled and shown as a red dot.</li>
+    <li><b>URL in, nothing else</b> — no built-in browsing. Paste a link (field or ⌘V) and it plays. Browse YouTube in a browser.</li>
+    <li><b>Minimum controls</b> — play/pause, prev/next favorite, volume/mute, favorite, keep-on-top. Everything else hides behind "…".</li>
+    <li><b>Small by default</b> — every layout survives shrinking; secondary UI drops first, play + volume drop last.</li>
+    <li><b>Native hooks</b> — Now Playing / media keys, system volume HUD styling, SF Symbols, automatic light/dark.</li>
+  </ul>
+</div>
+</body></html>

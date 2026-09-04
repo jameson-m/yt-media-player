@@ -1,0 +1,115 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>05 · Menu Bar — yt-media-player</title>
+<link rel="stylesheet" href="glass.css"><script src="glass.js"></script>
+<style>
+.screen{position:relative;width:900px;height:580px;border-radius:22px;overflow:hidden;flex:none;box-shadow:var(--shadow-win),0 0 0 .5px rgba(0,0,0,.3);
+  background:radial-gradient(60% 80% at 15% 20%,var(--wp1),transparent 62%),radial-gradient(50% 70% at 85% 12%,var(--wp2),transparent 62%),radial-gradient(60% 60% at 72% 88%,var(--wp3),transparent 62%),radial-gradient(50% 60% at 18% 92%,var(--wp4),transparent 62%),var(--wp-base)}
+.menubar{position:absolute;top:0;left:0;right:0;height:28px;display:flex;align-items:center;padding:0 12px;gap:18px;font:500 13px var(--font);color:var(--text);border-radius:0}
+.menubar .apple{font-size:15px}
+.menubar .r{margin-left:auto;display:flex;gap:16px;align-items:center;font-size:12px}
+.menubar .r svg{width:15px;height:15px;fill:currentColor;display:block}
+.menubar .r .on{background:var(--ink-3);border-radius:6px;padding:3px 6px;margin:-3px -6px}
+.popover{position:absolute;top:36px;right:184px;width:340px;border-radius:20px;padding:14px;display:flex;flex-direction:column;gap:12px;background:var(--win-bg)}
+.popover::before{content:"";position:absolute;top:-7px;right:106px;width:14px;height:14px;background:var(--win-bg);transform:rotate(45deg);border-radius:3px;z-index:0}
+.popover .now{display:flex;gap:12px;align-items:center}
+.popover .art{width:64px;height:64px;border-radius:12px;overflow:hidden;position:relative;flex:none;box-shadow:0 6px 16px rgba(0,0,0,.25)}
+.popover .art .scene{position:absolute;inset:0}
+.popover .now .txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.popover .now .title{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.popover .now .sub{display:flex;align-items:center;gap:6px}
+.popover .ctl{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:8px}
+.popover .ctl .grp{display:flex;align-items:center;gap:0}
+.popover .ctl .vol{display:flex;align-items:center;gap:6px}
+.popover hr{border:0;height:1px;background:var(--ink-2);margin:0}
+.popover .sec{font:600 11px/1 var(--font);letter-spacing:.06em;text-transform:uppercase;color:var(--text-3);padding:0 2px}
+.popover .list{display:flex;flex-direction:column;gap:2px;margin-top:-4px}
+.popover .item{display:flex;align-items:center;gap:10px;padding:6px 8px;border-radius:10px;cursor:pointer}
+.popover .item.sel{background:var(--glass-strong);box-shadow:inset 0 1px 0 var(--glass-line),0 0 0 .5px var(--ink-2)}
+.popover .item .avatar{width:28px;height:28px;font-size:9px}
+.popover .item .txt{flex:1;min-width:0}
+.popover .item .title{font-size:12.5px;font-weight:500}
+.popover .item .sub{font-size:11px;display:flex;align-items:center;gap:5px}
+.popover .item .btn{width:26px;height:26px;color:var(--text-2)}.popover .item .btn svg{width:14px;height:14px}
+.popover .foot{display:flex;gap:8px;align-items:center}
+.popover .foot .field{flex:1}
+.widget{position:absolute;left:36px;bottom:34px;width:300px;height:60px;border-radius:30px;display:flex;align-items:center;padding:0 10px 0 6px;gap:8px}
+.widget .art{width:48px;height:48px;border-radius:50%;overflow:hidden;position:relative;flex:none;box-shadow:0 0 0 .5px var(--ink-2)}
+.widget .art .scene{position:absolute;inset:0}
+.widget .txt{flex:1;min-width:0}
+.widget .txt .title{font-size:12px}.widget .txt .sub{font-size:11px;display:flex;align-items:center;gap:5px}
+.widget .btn.primary{width:40px;height:40px}
+.callout{position:absolute;font:500 11px var(--font);color:var(--text-2);display:flex;align-items:center;gap:6px}
+.callout::before{content:"";width:22px;height:1px;background:var(--text-3)}
+.c1{left:44px;bottom:16px}.c1::before{display:none}
+.c2{right:534px;top:60px}.c2::before{display:none}.c2::after{content:"";width:22px;height:1px;background:var(--text-3)}
+</style></head><body>
+<a class="back glass" href="index.html"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>All mockups</a>
+
+<div class="screen">
+  <div class="menubar glass">
+    <span class="apple"></span><b>Finder</b><span>File</span><span>Edit</span><span>View</span><span>Go</span><span>Window</span><span>Help</span>
+    <div class="r">
+      <span class="on"><svg><use href="#i-waves"/></svg></span>
+      <svg><use href="#i-speaker"/></svg>
+      <span>Wed Sep 3</span><span>9:41 AM</span>
+    </div>
+  </div>
+
+  <div class="popover glass">
+    <div class="now">
+      <div class="art"><div class="scene"></div></div>
+      <div class="txt">
+        <div class="title">lofi hip hop radio 📚 beats to relax/study to</div>
+        <div class="sub"><span class="dot-live"></span>Lofi Girl · 31.2K watching</div>
+      </div>
+      <button class="btn sm active" title="Favorite"><svg><use href="#i-heart"/></svg></button>
+    </div>
+    <div class="ctl">
+      <div class="grp">
+        <button class="btn" title="Previous favorite"><svg><use href="#i-backward"/></svg></button>
+        <button class="btn lg primary" title="Pause"><svg><use href="#i-pause"/></svg></button>
+        <button class="btn" title="Next favorite"><svg><use href="#i-forward"/></svg></button>
+      </div>
+      <div class="vol">
+        <button class="btn sm muted"><svg><use href="#i-speaker"/></svg></button>
+        <div class="slider"><div class="fill" style="width:58%"></div><div class="thumb" style="left:58%"></div></div>
+      </div>
+    </div>
+    <hr>
+    <div class="sec">Favorites</div>
+    <div class="list">
+      <div class="item sel"><div class="avatar av-a">LG</div><div class="txt"><div class="title">Lofi Girl</div><div class="sub"><span class="dot-live"></span>Live · 31.2K</div></div><span class="btn"><svg><use href="#i-waves"/></svg></span></div>
+      <div class="item"><div class="avatar av-c">CR</div><div class="txt"><div class="title">Chillhop Radio</div><div class="sub"><span class="dot-live"></span>Live · 8.4K</div></div><button class="btn"><svg><use href="#i-play"/></svg></button></div>
+      <div class="item"><div class="avatar av-b">SB</div><div class="txt"><div class="title">Synthwave Boy</div><div class="sub"><span class="dot-live"></span>Live · 2.1K</div></div><button class="btn"><svg><use href="#i-play"/></svg></button></div>
+      <div class="item"><div class="avatar av-d" style="filter:saturate(.2);opacity:.6">AW</div><div class="txt"><div class="title">Ambient Worlds</div><div class="sub"><span class="dot-off"></span>Offline · last live 2d ago</div></div></div>
+    </div>
+    <hr>
+    <div class="foot">
+      <div class="field"><svg viewBox="0 0 24 24"><use href="#i-link"/></svg><span>Paste a YouTube link…</span></div>
+      <button class="btn sm muted" title="Show window"><svg><use href="#i-pip"/></svg></button>
+      <button class="btn sm muted" title="Settings"><svg><use href="#i-gear"/></svg></button>
+    </div>
+  </div>
+
+  <div class="widget glass">
+    <div class="art"><div class="scene"></div></div>
+    <div class="txt"><div class="title">lofi hip hop radio 📚 beats to relax/study to</div><div class="sub"><span class="dot-live"></span>Lofi Girl</div></div>
+    <button class="btn primary" title="Pause"><svg><use href="#i-pause"/></svg></button>
+    <button class="btn sm muted" title="Volume"><svg><use href="#i-speaker"/></svg></button>
+  </div>
+  <div class="callout c1">optional floating pill (keep-on-top)</div>
+  <div class="callout c2">menu bar popover — the main UI</div>
+</div>
+
+<div class="note glass">
+  <span class="tag">Mockup 05 of 05</span>
+  <h1>Menu Bar — no window at all</h1>
+  The most "out of the way" option. The app lives as a menu bar extra (animated bars while playing). Clicking it drops a glass popover with now-playing, transport, volume, your favorites with live status, and a paste field. Close it and it's gone.
+  <ul>
+    <li><b>Popover</b> is the whole app for 90% of use. Favorites are a real list with names and viewer counts, not just avatars.</li>
+    <li><b>Floating pill</b> is an optional companion — a tiny keep-on-top capsule with art, title, play/pause, and a volume pop. Drag it anywhere; it can be turned off in settings.</li>
+    <li>"Show window" (footer) opens a proper video window when you actually want to watch — could reuse mockup 02's immersive view.</li>
+    <li>Media keys (F8 / AirPods) drive play/pause since it registers with Now Playing on macOS.</li>
+  </ul>
+</div>
+</body></html>

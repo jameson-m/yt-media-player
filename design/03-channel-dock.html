@@ -1,0 +1,82 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>03 · Channel Dock — yt-media-player</title>
+<link rel="stylesheet" href="glass.css"><script src="glass.js"></script>
+<style>
+.w03{width:660px;height:380px;display:grid;grid-template-columns:70px 1fr;gap:0}
+.dock{padding:44px 0 12px;display:flex;flex-direction:column;align-items:center;gap:10px;background:var(--ink);box-shadow:inset -.5px 0 0 var(--ink-2)}
+.dock .item{position:relative;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;cursor:pointer}
+.dock .item.sel{background:var(--glass-strong);box-shadow:inset 0 1px 0 var(--glass-line),0 0 0 .5px var(--ink-2),0 4px 12px rgba(0,0,0,.14)}
+.dock .item.sel::before{content:"";position:absolute;left:-12px;top:14px;bottom:14px;width:3px;border-radius:2px;background:var(--text)}
+.dock .item .avatar{width:34px;height:34px;font-size:11px}
+.dock .item.off .avatar{filter:saturate(.2);opacity:.55}
+.dock .spacer{flex:1}
+.dock .add{width:34px;height:34px;color:var(--text-2)}
+.main{display:flex;flex-direction:column;padding:12px 12px 12px 12px;gap:10px;min-width:0}
+.toolbar{height:30px;display:flex;align-items:center;gap:8px;padding-left:0}
+.toolbar .field{flex:1;margin-left:6px}
+.toolbar .kbd{margin-left:auto}
+.player{flex:1;border-radius:14px;overflow:hidden;position:relative}
+.player .scene{position:absolute;inset:0}
+.player .live{position:absolute;top:10px;left:10px}
+.player .pip{position:absolute;top:8px;right:8px;color:#fff;width:30px;height:30px}
+.player .pip svg{width:16px;height:16px}
+.transport{height:60px;border-radius:16px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 12px;gap:8px}
+.transport .now{display:flex;align-items:center;gap:10px;min-width:0}
+.transport .now .txt{min-width:0}
+.transport .ctl{display:flex;align-items:center;gap:2px}
+.transport .vol{display:flex;align-items:center;gap:6px;justify-self:end;width:150px}
+</style></head><body>
+<a class="back glass" href="index.html"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>All mockups</a>
+
+<div class="window w03">
+  <div class="lights"><i class="r"></i><i class="y"></i><i class="g"></i></div>
+  <aside class="dock">
+    <div class="item sel" title="Lofi Girl · Live"><div class="avatar av-a is-live">LG</div></div>
+    <div class="item" title="Chillhop · Live"><div class="avatar av-c is-live">CR</div></div>
+    <div class="item" title="Synthwave Boy · Live"><div class="avatar av-b is-live">SB</div></div>
+    <div class="item off" title="Ambient Worlds · Offline"><div class="avatar av-d">AW</div></div>
+    <div class="item off" title="Cafe Music BGM · Offline"><div class="avatar av-e">CB</div></div>
+    <div class="spacer"></div>
+    <button class="btn add" title="Add favorite"><svg><use href="#i-plus"/></svg></button>
+  </aside>
+  <main class="main">
+    <div class="toolbar">
+      <div class="field"><svg viewBox="0 0 24 24"><use href="#i-link"/></svg><span>Paste a YouTube link or search…</span><span class="kbd" style="flex:none">⌘L</span></div>
+      <button class="btn sm muted" title="Keep on top"><svg><use href="#i-pin"/></svg></button>
+      <button class="btn sm muted" title="Settings"><svg><use href="#i-gear"/></svg></button>
+    </div>
+    <div class="player">
+      <div class="scene"></div>
+      <span class="live"><i></i>Live</span>
+      <button class="btn pip glass" title="Hide video (audio only)"><svg><use href="#i-pip"/></svg></button>
+    </div>
+    <div class="transport glass">
+      <div class="now">
+        <div class="avatar av-a" style="width:32px;height:32px;font-size:10px">LG</div>
+        <div class="txt"><div class="title">lofi hip hop radio 📚 beats to relax/study to</div><div class="sub">Lofi Girl · 31.2K watching</div></div>
+      </div>
+      <div class="ctl">
+        <button class="btn" title="Previous favorite"><svg><use href="#i-backward"/></svg></button>
+        <button class="btn lg primary" title="Pause"><svg><use href="#i-pause"/></svg></button>
+        <button class="btn" title="Next favorite"><svg><use href="#i-forward"/></svg></button>
+      </div>
+      <div class="vol">
+        <button class="btn sm muted" title="Mute"><svg><use href="#i-speaker"/></svg></button>
+        <div class="slider"><div class="fill" style="width:70%"></div><div class="thumb" style="left:70%"></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="note glass">
+  <span class="tag">Mockup 03 of 05</span>
+  <h1>Channel Dock — favorites first</h1>
+  Treats your saved streams like TV channels. A slim dock on the left lists favorites as avatars; a red dot means it's live right now, greyed-out means the channel isn't streaming. Click to switch, drag to reorder.
+  <ul>
+    <li><b>Toolbar field</b> accepts a pasted URL (or a search term) — this is how new things get in. ⌘L focuses it from anywhere.</li>
+    <li><b>Transport bar</b> is classic three-zone: now-playing · controls · volume. Familiar to anyone who's used Music.app.</li>
+    <li><b>Audio-only toggle</b> (top right of video) collapses the player, leaving just dock + transport — a very short, wide window.</li>
+    <li>Live status is polled every few minutes for each favorite; a notification is optional when a favorite goes live.</li>
+  </ul>
+</div>
+</body></html>

@@ -1,0 +1,75 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>04 · Now Playing — yt-media-player</title>
+<link rel="stylesheet" href="glass.css"><script src="glass.js"></script>
+<style>
+.w04{width:340px;height:500px;padding:44px 22px 18px;display:flex;flex-direction:column;gap:14px}
+.art{position:relative;aspect-ratio:1;border-radius:18px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.3),0 0 0 .5px rgba(0,0,0,.2)}
+.art .scene{position:absolute;inset:0}
+.art .live{position:absolute;top:12px;left:12px}
+.art .show{position:absolute;right:10px;bottom:10px;border-radius:999px;padding:5px 11px 5px 8px;display:flex;align-items:center;gap:6px;font:600 11px var(--font);color:var(--text);cursor:pointer}
+.art .show svg{width:14px;height:14px;fill:currentColor}
+.info{display:flex;align-items:center;gap:10px;padding:0 2px}
+.info .txt{flex:1;min-width:0}
+.info .title{font-size:15px;letter-spacing:-.015em}
+.info .sub{font-size:13px}
+.ctl{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:2px}
+.vol{display:flex;align-items:center;gap:8px;padding:0 4px}
+.favs{margin-top:auto;border-radius:16px;padding:10px 12px}
+.favs .hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.favs .hd span{font:600 11px/1 var(--font);letter-spacing:.06em;text-transform:uppercase;color:var(--text-3)}
+.favs .hd .btn{width:22px;height:22px;color:var(--text-2)}.favs .hd .btn svg{width:13px;height:13px}
+.favs .row{display:flex;gap:10px;align-items:center}
+.favs .avatar{width:34px;height:34px;font-size:11px;cursor:pointer}
+.favs .avatar.sel{box-shadow:0 0 0 2px var(--win-bg),0 0 0 3.5px var(--text)}
+.favs .avatar.off{filter:saturate(.2);opacity:.5}
+</style></head><body>
+<a class="back glass" href="index.html"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>All mockups</a>
+
+<div class="window w04">
+  <div class="lights"><i class="r"></i><i class="y"></i><i class="g"></i></div>
+  <div class="art">
+    <div class="scene"></div>
+    <span class="live"><i></i>Live</span>
+    <div class="show glass"><svg><use href="#i-pip"/></svg>Show video</div>
+  </div>
+  <div class="info">
+    <div class="txt">
+      <div class="title">lofi hip hop radio 📚 beats to relax/study to</div>
+      <div class="sub">Lofi Girl · 31.2K watching</div>
+    </div>
+    <button class="btn active" title="Favorite"><svg><use href="#i-heart"/></svg></button>
+  </div>
+  <div class="ctl">
+    <button class="btn lg" title="Previous favorite"><svg><use href="#i-backward"/></svg></button>
+    <button class="btn xl primary" title="Pause"><svg><use href="#i-pause"/></svg></button>
+    <button class="btn lg" title="Next favorite"><svg><use href="#i-forward"/></svg></button>
+  </div>
+  <div class="vol">
+    <button class="btn sm muted"><svg><use href="#i-speaker-low"/></svg></button>
+    <div class="slider"><div class="fill" style="width:55%"></div><div class="thumb" style="left:55%"></div></div>
+    <button class="btn sm muted"><svg><use href="#i-speaker"/></svg></button>
+  </div>
+  <div class="favs glass">
+    <div class="hd"><span>Favorites</span><button class="btn" title="Add"><svg><use href="#i-plus"/></svg></button></div>
+    <div class="row">
+      <div class="avatar av-a is-live sel">LG</div>
+      <div class="avatar av-c is-live">CR</div>
+      <div class="avatar av-b is-live">SB</div>
+      <div class="avatar av-d off">AW</div>
+      <div class="avatar av-e off">CB</div>
+    </div>
+  </div>
+</div>
+
+<div class="note glass">
+  <span class="tag">Mockup 04 of 05</span>
+  <h1>Now Playing — audio first</h1>
+  Admits what this really is: a radio. The video is treated as album art — a frozen frame of the stream, with an optional "Show video" toggle that swaps in the live player. Portrait, narrow, tucks neatly beside a code editor.
+  <ul>
+    <li><b>Layout borrows from Music.app's Mini Player</b>: art · title · big transport · volume · then favorites.</li>
+    <li><b>Favorites strip</b> shows live dots; the selected one gets a ring. Prev/Next steps through this strip.</li>
+    <li>Paste a URL anywhere in the window (⌘V) and it just starts playing — no field needed. A "+" adds the current stream to favorites.</li>
+    <li>Cheapest on CPU: audio-only by default, video decoding only when you ask for it.</li>
+  </ul>
+</div>
+</body></html>

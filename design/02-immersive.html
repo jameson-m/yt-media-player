@@ -1,0 +1,66 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>02 · Immersive — yt-media-player</title>
+<link rel="stylesheet" href="glass.css"><script src="glass.js"></script>
+<style>
+.w02{width:560px;height:315px;border-radius:18px}
+.w02 .scene{position:absolute;inset:0}
+.w02 .lights i{box-shadow:inset 0 0 0 .5px rgba(0,0,0,.25),0 1px 3px rgba(0,0,0,.35)}
+.chan{position:absolute;top:10px;right:10px;border-radius:999px;padding:5px 12px 5px 5px;display:flex;align-items:center;gap:8px;color:var(--text)}
+.chan .avatar{width:24px;height:24px;font-size:9px}
+.chan .sub{color:var(--text-2)}
+.chan .title{font-size:12px}
+.meta{position:absolute;left:16px;bottom:78px;right:16px;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.meta .title{font-size:14px;color:#fff}
+.meta .sub{color:rgba(255,255,255,.75)}
+.meta .live{margin-bottom:8px}
+.bar{position:absolute;left:14px;right:14px;bottom:14px;height:52px;border-radius:26px;display:flex;align-items:center;padding:0 10px 0 8px;gap:4px}
+.bar .grp{display:flex;align-items:center;gap:2px}
+.bar .vol{display:flex;align-items:center;gap:6px;flex:1;padding:0 8px;min-width:0}
+.bar .vol .slider{min-width:50px}
+.bar .vsep{width:1px;height:22px;background:var(--ink-2);margin:0 6px}
+.hint{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);font:500 11px var(--font);color:rgba(255,255,255,.5);letter-spacing:.02em;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+</style></head><body>
+<a class="back glass" href="index.html"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>All mockups</a>
+
+<div class="window w02">
+  <div class="scene"></div>
+  <div class="lights"><i class="r"></i><i class="y"></i><i class="g"></i></div>
+  <div class="chan glass">
+    <div class="avatar av-c is-live">CR</div>
+    <div class="title">Chillhop Radio</div>
+    <button class="btn sm muted" title="Switch channel"><svg><use href="#i-chev"/></svg></button>
+  </div>
+  <div class="meta">
+    <span class="live"><i></i>Live</span>
+    <div class="title">jazzy · lofi hip hop beats 🌿 chillhop radio</div>
+    <div class="sub">8.4K watching · started 3 hours ago</div>
+  </div>
+  <div class="bar glass">
+    <div class="grp">
+      <button class="btn" title="Previous favorite"><svg><use href="#i-backward"/></svg></button>
+      <button class="btn lg primary" title="Pause"><svg><use href="#i-pause"/></svg></button>
+      <button class="btn" title="Next favorite"><svg><use href="#i-forward"/></svg></button>
+    </div>
+    <div class="vsep"></div>
+    <div class="vol">
+      <button class="btn sm muted" title="Mute"><svg><use href="#i-speaker"/></svg></button>
+      <div class="slider"><div class="fill" style="width:48%"></div><div class="thumb" style="left:48%"></div></div>
+    </div>
+    <div class="vsep"></div>
+    <button class="btn active" title="Favorite"><svg><use href="#i-heart"/></svg></button>
+    <button class="btn muted" title="More"><svg><use href="#i-more"/></svg></button>
+  </div>
+</div>
+
+<div class="note glass">
+  <span class="tag">Mockup 02 of 05</span>
+  <h1>Immersive — video is the window</h1>
+  No chrome at all. The video bleeds edge to edge behind the traffic lights, and every control floats on glass over it. Move the mouse away and everything but the picture fades out, so at rest it's just a small living thumbnail on your desk.
+  <ul>
+    <li><b>Bottom bar</b> is one continuous glass capsule: transport · volume · favorite · more. Below ~360px wide the volume slider collapses to a mute button that pops a vertical slider.</li>
+    <li><b>Channel chip</b> (top right) shows what's playing; clicking it drops a favorites menu with live dots, so switching stations never leaves this view.</li>
+    <li><b>More (…)</b> holds the rarely used stuff: paste URL, keep on top, audio-only mode, quality.</li>
+    <li>Double-click the video to toggle a true mini mode (just the bar + a 16:9 sliver).</li>
+  </ul>
+</div>
+</body></html>

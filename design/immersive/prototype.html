@@ -1,0 +1,487 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Immersive — Interactive Prototype — yt-media-player</title>
+<link rel="stylesheet" href="../glass.css"><link rel="stylesheet" href="immersive.css"><script src="../glass.js"></script>
+</head><body>
+<a class="back glass" href="../index.html"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>All mockups</a>
+
+<div class="page">
+
+<header>
+  <h1>Immersive — interactive prototype</h1>
+  <p>A clickable mockup of the immersive window: hover to reveal controls, click through the channel switcher, volume, and more menu.</p>
+  <div class="links">
+    <a class="pill-link glass" href="storyboard.html">Storyboard</a>
+    <a class="pill-link glass" href="system.html">System &amp; settings</a>
+    <a class="pill-link glass on" href="prototype.html">Interactive prototype</a>
+  </div>
+</header>
+
+<section>
+  <div class="row" style="align-items:flex-start">
+    <div class="frame">
+
+      <div class="win" id="win">
+        <div class="scene" id="scene"></div>
+        <div class="lights hud"><i class="r"></i><i class="y"></i><i class="g"></i></div>
+
+        <div class="chip glass hud" id="chip">
+          <div class="avatar av-a is-live" id="chipAv">LG</div>
+          <div class="name" id="chipName">Lofi Girl</div>
+          <button class="btn sm" id="chipChev"><svg><use href="#i-chev"/></svg></button>
+        </div>
+
+        <div class="meta hud" id="meta">
+          <span class="live" id="liveBadge"><i></i>Live</span>
+          <div class="title" id="title">lofi hip hop radio 📚 beats to relax/study to</div>
+          <div class="sub" id="sub">Lofi Girl · 31.2K watching</div>
+        </div>
+
+        <div class="bar glass hud" id="bar">
+          <button class="btn" id="prev" title="Previous favorite"><svg><use href="#i-backward"/></svg></button>
+          <button class="btn lg primary" id="play" title="Pause"><svg><use href="#i-pause"/></svg></button>
+          <button class="btn" id="next" title="Next favorite"><svg><use href="#i-forward"/></svg></button>
+          <div class="vsep"></div>
+          <div class="vol">
+            <button class="btn sm muted" id="mute" title="Mute"><svg><use href="#i-speaker"/></svg></button>
+            <div class="slider" id="vol"><div class="fill" style="width:62%"></div><div class="thumb" style="left:62%"></div></div>
+          </div>
+          <div class="vsep v2"></div>
+          <button class="btn active" id="fav" title="Favorite"><svg><use href="#i-heart"/></svg></button>
+          <button class="btn muted more" id="more" title="More"><svg><use href="#i-more"/></svg></button>
+        </div>
+
+        <div class="glyph glass hidden" id="glyph"><svg><use href="#i-play"/></svg></div>
+
+        <div class="pop ch glass hidden" id="popCh">
+          <div class="hd">Favorites</div>
+          <div id="crows"></div>
+          <hr>
+          <div class="mi" id="miAdd"><svg><use href="#i-plus"/></svg>Add current stream</div>
+          <div class="mi" id="miPaste"><svg><use href="#i-link"/></svg>Paste a link…<span class="k">⌘V</span></div>
+          <div class="mi"><svg><use href="#i-gear"/></svg>Edit favorites…</div>
+        </div>
+
+        <div class="pop menu glass hidden" id="popMenu">
+          <div class="mi" id="mPaste"><svg><use href="#i-link"/></svg>Paste Link…<span class="k">⌘V</span></div>
+          <div class="mi" id="mFav"><svg><use href="#i-heart-o"/></svg>Add to Favorites<span class="k">⌘D</span></div>
+          <hr>
+          <div class="mi" id="mTop"><svg><use href="#i-pin"/></svg>Keep on Top<span class="chk" id="mTopChk"></span><span class="k">⌥⌘T</span></div>
+          <div class="mi" id="mAudio"><svg><use href="#i-pip"/></svg>Audio Only<span class="k">⇧⌘A</span></div>
+          <div class="mi" id="mHide"><svg><use href="#i-x"/></svg>Hide Controls<span class="k">⌘H</span></div>
+          <hr>
+          <div class="mi" id="mQuality"><svg><use href="#i-gear"/></svg>Quality<span class="sub" id="mQualityVal">Auto ›</span></div>
+          <hr>
+          <div class="mi" id="mSettings"><svg><use href="#i-gear"/></svg>Settings…<span class="k">⌘,</span></div>
+          <div class="mi" id="mQuit"><svg><use href="#i-x"/></svg>Quit<span class="k">⌘Q</span></div>
+        </div>
+
+        <div class="pop q glass hidden" id="popQ">
+          <div class="mi qopt" data-q="Auto">Auto<span class="chk" id="qAutoChk">✓</span></div>
+          <div class="mi qopt" data-q="1080p">1080p<span class="chk"></span></div>
+          <div class="mi qopt" data-q="720p">720p<span class="chk"></span></div>
+          <div class="mi qopt" data-q="480p">480p<span class="chk"></span></div>
+          <div class="mi qopt" data-q="Audio only">Audio only<span class="chk"></span></div>
+        </div>
+
+        <div class="pop volp glass hidden" id="popVol">
+          <div class="slider v" id="volV"><div class="fill" style="height:62%"></div><div class="thumb" style="top:38%"></div></div>
+          <div class="pct" id="volPct">62%</div>
+        </div>
+
+        <div class="toast glass hidden" id="toast"></div>
+
+        <div class="linkbox glass hidden" id="linkbox">
+          <div class="field typing"><svg><use href="#i-link"/></svg><span id="url"></span><span class="caret"></span><button class="go" id="linkGo">Play</button></div>
+          <div class="hint"><span id="linkHint">Paste a YouTube URL</span><span>Esc to cancel</span></div>
+        </div>
+
+        <div class="empty hidden" id="empty">
+          <div class="ico glass"><svg><use href="#i-link"/></svg></div>
+          <div class="h">No stream playing</div>
+          <div class="p">Paste a YouTube link or pick a favorite to get started. <kbd>⌘V</kbd></div>
+          <div class="favrow" id="emptyFavs"></div>
+          <button class="pastebtn glass" id="emptyPaste"><svg><use href="#i-link"/></svg>Paste a link</button>
+        </div>
+      </div>
+
+      <div class="pill glass hidden" id="pill">
+        <div class="art"><div class="scene" id="pillScene"></div></div>
+        <div class="txt">
+          <div class="title" id="pillTitle">lofi hip hop radio 📚 beats to relax/study to</div>
+          <div class="sub"><span class="dot-live"></span><span id="pillSub">Lofi Girl · 31.2K watching</span></div>
+        </div>
+        <button class="btn sm muted" id="pillVol"><svg><use href="#i-speaker"/></svg></button>
+        <button class="btn lg primary" id="pillPlay"><svg><use href="#i-pause"/></svg></button>
+        <div class="chip" id="pillChip"><div class="avatar av-a is-live" id="pillAv">LG</div><button class="btn sm"><svg><use href="#i-chev"/></svg></button></div>
+        <button class="btn sm muted" id="pillReturn" title="Return to video"><svg><use href="#i-pip"/></svg></button>
+      </div>
+
+      <div class="size-ctl glass">
+        <button class="pill-link" data-size="large">Large</button>
+        <button class="pill-link on" data-size="default">Default</button>
+        <button class="pill-link" data-size="compact">Compact</button>
+        <button class="pill-link" id="ctlPill">Audio-only pill</button>
+        <button class="pill-link" id="ctlIdle">Simulate idle now</button>
+        <button class="pill-link" id="ctlEmpty">Empty state</button>
+        <button class="pill-link" id="ctlEnded">Stream ended</button>
+        <button class="pill-link" id="ctlLoading">Loading</button>
+      </div>
+
+      <div class="note glass">
+        <span class="tag">How to poke at it</span>
+        <ul>
+          <li>Move the mouse in and out of the window — controls fade after a couple seconds idle.</li>
+          <li><kbd>Space</kbd> plays/pauses; <kbd>←</kbd>/<kbd>→</kbd> cycle live favorites; <kbd>↑</kbd>/<kbd>↓</kbd> adjust volume.</li>
+          <li>Click the channel chip (top right) to switch stations.</li>
+          <li>Double-click the video to toggle audio-only pill mode.</li>
+          <li>Use the toolbar above to try Large/Compact sizes, empty, ended, and loading states.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</div>
+
+<script>
+(function(){
+  var channels=[
+    {id:'lg',name:'Lofi Girl',av:'av-a',ini:'LG',live:true,viewers:'31.2K',title:'lofi hip hop radio 📚 beats to relax/study to',scene:''},
+    {id:'cr',name:'Chillhop Radio',av:'av-c',ini:'CR',live:true,viewers:'8.4K',title:'jazzy · lofi hip hop beats 🌿 chillhop radio',scene:'teal'},
+    {id:'sb',name:'Synthwave Boy',av:'av-b',ini:'SB',live:true,viewers:'2.1K',title:'synthwave radio 🌌 beats to chill/game to',scene:'magenta'},
+    {id:'aw',name:'Ambient Worlds',av:'av-d',ini:'AW',live:false,last:'2d ago'},
+    {id:'cb',name:'Cafe Music BGM',av:'av-e',ini:'CB',live:false,last:'5h ago'}
+  ];
+
+  var App={
+    cur:channels[0], vol:62, muted:false, favActive:true, keepTop:false,
+    quality:'Auto', pinned:false, openPop:null, idleTimer:null, leaveTimer:null
+  };
+
+  var $=function(id){return document.getElementById(id)};
+  var win=$('win'), scene=$('scene'), chip=$('chip'), toastEl=$('toast');
+
+  function liveChannels(){return channels.filter(function(c){return c.live})}
+
+  function showToast(html,ms){
+    toastEl.innerHTML=html;
+    toastEl.classList.remove('hidden');
+    clearTimeout(App.toastTimer);
+    App.toastTimer=setTimeout(function(){toastEl.classList.add('hidden')},ms||1600);
+  }
+
+  // ---- idle fade ----
+  function clearIdle(){win.classList.remove('idle')}
+  function scheduleIdle(){
+    clearTimeout(App.idleTimer);
+    if(App.openPop||!$('linkbox').classList.contains('hidden')||win.classList.contains('paused'))return;
+    App.idleTimer=setTimeout(function(){if(!App.openPop)win.classList.add('idle')},2000);
+  }
+  win.addEventListener('mousemove',function(){
+    if(App.pinned)return;
+    clearTimeout(App.leaveTimer);
+    clearIdle();
+    scheduleIdle();
+  });
+  win.addEventListener('mouseleave',function(){
+    if(App.pinned)return;
+    App.leaveTimer=setTimeout(function(){win.classList.add('idle')},600);
+  });
+
+  // ---- render channel ----
+  function applyChannel(c,announce){
+    App.cur=c;
+    scene.className='scene'+(c.scene?' '+c.scene:'');
+    chip.querySelector('.avatar').className='avatar '+c.av+' is-live';
+    $('chipAv').textContent=c.ini;
+    $('chipName').textContent=c.name;
+    $('title').textContent=c.title;
+    $('sub').textContent=c.name+' · '+c.viewers+' watching';
+    $('pillScene').className='scene'+(c.scene?' '+c.scene:'');
+    $('pillTitle').textContent=c.title;
+    $('pillSub').textContent=c.name+' · '+c.viewers+' watching';
+    $('pillAv').className='avatar '+c.av+' is-live';
+    $('pillAv').textContent=c.ini;
+    buildRows();
+    if(announce)showToast('<svg><use href="#i-waves"/></svg>Switched to '+c.name,1600);
+  }
+
+  function buildRows(){
+    var wrap=$('crows');
+    wrap.innerHTML='';
+    channels.forEach(function(c){
+      var row=document.createElement('div');
+      row.className='crow'+(c.id===App.cur.id?' sel':'')+(!c.live?' off':'');
+      var sub=c.live?('<span class="dot-live"></span>Live · '+c.viewers):('Offline · last live '+c.last);
+      row.innerHTML='<div class="avatar '+c.av+(c.live?' is-live':'')+'">'+c.ini+'</div>'
+        +'<div class="txt"><div class="title">'+c.name+'</div><div class="sub">'+sub+'</div></div>'
+        +(c.id===App.cur.id?'<div class="eq"><svg><use href="#i-waves"/></svg></div>':'<div class="go"><svg viewBox="0 0 24 24"><use href="#i-chev"/></svg></div>');
+      row.addEventListener('click',function(){
+        if(!c.live){showToast(c.name+' is offline',1400);return}
+        closeAllPops();
+        applyChannel(c,true);
+      });
+      wrap.appendChild(row);
+    });
+  }
+
+  // ---- popovers ----
+  var pops=['popCh','popMenu','popVol','popQ'];
+  function closeAllPops(){
+    pops.forEach(function(id){$(id).classList.add('hidden')});
+    chip.classList.remove('open');
+    App.openPop=null;
+    scheduleIdle();
+  }
+  function openPop(id){
+    var wasOpen=!$(id).classList.contains('hidden');
+    closeAllPops();
+    if(wasOpen)return;
+    $(id).classList.remove('hidden');
+    App.openPop=id;
+    if(id==='popCh')chip.classList.add('open');
+    clearIdle();
+    clearTimeout(App.idleTimer);
+  }
+
+  chip.addEventListener('click',function(e){e.stopPropagation();buildRows();openPop('popCh')});
+  $('more').addEventListener('click',function(e){e.stopPropagation();openPop('popMenu')});
+
+  scene.addEventListener('click',function(){closeAllPops()});
+  win.addEventListener('click',function(e){
+    if(e.target===win)closeAllPops();
+  });
+
+  // ---- play/pause ----
+  function setPaused(p){
+    win.classList.toggle('paused',p);
+    $('play').querySelector('use').setAttribute('href',p?'#i-play':'#i-pause');
+    $('pillPlay').querySelector('use').setAttribute('href',p?'#i-play':'#i-pause');
+    $('glyph').classList.toggle('hidden',!p);
+    if(p){$('glyph').innerHTML='<svg><use href="#i-play"/></svg>';clearTimeout(App.idleTimer);clearIdle()}
+    else scheduleIdle();
+  }
+  $('play').addEventListener('click',function(e){e.stopPropagation();setPaused(!win.classList.contains('paused'))});
+  $('pillPlay').addEventListener('click',function(e){e.stopPropagation();setPaused(!win.classList.contains('paused'))});
+
+  // ---- prev/next ----
+  function step(dir){
+    var live=liveChannels();
+    var i=live.findIndex(function(c){return c.id===App.cur.id});
+    if(i===-1)i=0;
+    var next=live[(i+dir+live.length)%live.length];
+    applyChannel(next,true);
+  }
+  $('prev').addEventListener('click',function(e){e.stopPropagation();step(-1)});
+  $('next').addEventListener('click',function(e){e.stopPropagation();step(1)});
+
+  // ---- volume ----
+  function setVol(v,fromMute){
+    App.vol=Math.max(0,Math.min(100,v));
+    if(!App.muted||fromMute){
+      $('vol').querySelector('.fill').style.width=App.vol+'%';
+      $('vol').querySelector('.thumb').style.left=App.vol+'%';
+      $('volV').querySelector('.fill').style.height=App.vol+'%';
+      $('volV').querySelector('.thumb').style.top=(100-App.vol)+'%';
+      $('volPct').textContent=App.vol+'%';
+    }
+  }
+  setVol(App.vol);
+  $('vol').addEventListener('click',function(e){
+    e.stopPropagation();
+    var r=this.getBoundingClientRect();
+    var pct=Math.round(((e.clientX-r.left)/r.width)*100);
+    App.muted=false;
+    $('mute').querySelector('use').setAttribute('href','#i-speaker');
+    setVol(pct);
+  });
+  $('volV').addEventListener('click',function(e){
+    e.stopPropagation();
+    var r=this.getBoundingClientRect();
+    var pct=Math.round(((r.bottom-e.clientY)/r.height)*100);
+    App.muted=false;
+    $('mute').querySelector('use').setAttribute('href','#i-speaker');
+    setVol(pct);
+  });
+  function toggleMute(){
+    App.muted=!App.muted;
+    if(App.muted){
+      $('vol').querySelector('.fill').style.width='0%';
+      $('vol').querySelector('.thumb').style.left='0%';
+      $('mute').querySelector('use').setAttribute('href','#i-speaker-low');
+    }else{
+      $('mute').querySelector('use').setAttribute('href','#i-speaker');
+      setVol(App.vol,true);
+    }
+  }
+  $('mute').addEventListener('click',function(e){
+    e.stopPropagation();
+    if(win.classList.contains('compact')){openPop('popVol');return}
+    toggleMute();
+  });
+  $('pillVol').addEventListener('click',function(e){e.stopPropagation();showToast('Volume '+App.vol+'%',1200)});
+
+  scene.addEventListener('wheel',function(e){
+    e.preventDefault();
+    var delta=e.deltaY<0?3:-3;
+    App.muted=false;
+    $('mute').querySelector('use').setAttribute('href','#i-speaker');
+    setVol(App.vol+delta);
+    showToast('Volume '+App.vol+'%',900);
+  },{passive:false});
+
+  // ---- favorite ----
+  function setFav(active,announce){
+    App.favActive=active;
+    $('fav').classList.toggle('active',active);
+    $('fav').querySelector('use').setAttribute('href',active?'#i-heart':'#i-heart-o');
+    $('mFav').querySelector('use').setAttribute('href',active?'#i-heart':'#i-heart-o');
+    if(announce)showToast(active?'Added to Favorites':'Removed from Favorites',1400);
+  }
+  $('fav').addEventListener('click',function(e){e.stopPropagation();setFav(!App.favActive,true)});
+  $('mFav').addEventListener('click',function(){setFav(!App.favActive,true);closeAllPops()});
+
+  // ---- more menu items ----
+  $('mPaste').addEventListener('click',function(){closeAllPops();openLinkbox()});
+  $('miPaste').addEventListener('click',function(){closeAllPops();openLinkbox()});
+  $('miAdd').addEventListener('click',function(){closeAllPops();showToast('Added current stream',1400)});
+  $('mTop').addEventListener('click',function(){
+    App.keepTop=!App.keepTop;
+    $('mTopChk').textContent=App.keepTop?'✓':'';
+    showToast(App.keepTop?'Keep on Top enabled':'Keep on Top disabled',1400);
+  });
+  $('mAudio').addEventListener('click',function(){closeAllPops();enterPill()});
+  $('mHide').addEventListener('click',function(){
+    closeAllPops();
+    App.pinned=true;
+    win.classList.add('idle');
+    showToast('Controls hidden · press any key',1600);
+  });
+  $('mQuality').addEventListener('click',function(e){e.stopPropagation();openPop('popQ')});
+  $('mSettings').addEventListener('click',function(){closeAllPops();showToast('Settings would open',1400)});
+  $('mQuit').addEventListener('click',function(){closeAllPops();showToast('Quit',1200)});
+
+  document.querySelectorAll('.qopt').forEach(function(el){
+    el.addEventListener('click',function(){
+      App.quality=this.dataset.q;
+      $('mQualityVal').textContent=App.quality+' ›';
+      document.querySelectorAll('.qopt .chk').forEach(function(c){c.textContent=''});
+      this.querySelector('.chk').textContent='✓';
+      closeAllPops();
+    });
+  });
+
+  // ---- linkbox ----
+  function openLinkbox(){
+    $('linkbox').classList.remove('hidden');
+    $('url').textContent='https://youtu.be/jfKfPfyJRdk';
+    $('linkHint').textContent='Live stream detected · Lofi Girl';
+    clearTimeout(App.idleTimer);
+    clearIdle();
+  }
+  function closeLinkbox(){$('linkbox').classList.add('hidden');scheduleIdle()}
+  function submitLink(){
+    closeLinkbox();
+    doLoading(function(){applyChannel(channels[0],false);showToast('<svg><use href="#i-waves"/></svg>Switched to Lofi Girl',1600)});
+  }
+  $('linkGo').addEventListener('click',function(e){e.stopPropagation();submitLink()});
+
+  // ---- loading ----
+  function doLoading(cb){
+    win.classList.add('loading');
+    $('glyph').classList.remove('hidden');
+    $('glyph').innerHTML='<div class="spin"></div>';
+    setTimeout(function(){
+      win.classList.remove('loading');
+      $('glyph').classList.add('hidden');
+      $('glyph').innerHTML='<svg><use href="#i-play"/></svg>';
+      if(cb)cb();
+    },1500);
+  }
+
+  // ---- pill / audio-only ----
+  function enterPill(){
+    win.classList.add('hidden');
+    $('pill').classList.remove('hidden');
+  }
+  function exitPill(){
+    $('pill').classList.add('hidden');
+    win.classList.remove('hidden');
+  }
+  $('ctlPill').addEventListener('click',enterPill);
+  $('pillReturn').addEventListener('click',exitPill);
+  scene.addEventListener('dblclick',function(e){e.stopPropagation();enterPill()});
+  $('pillChip').addEventListener('click',function(e){e.stopPropagation();buildRows();openPop('popCh')});
+
+  // ---- size toolbar ----
+  document.querySelectorAll('[data-size]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      document.querySelectorAll('[data-size]').forEach(function(b){b.classList.remove('on')});
+      this.classList.add('on');
+      win.classList.remove('large','compact');
+      if(this.dataset.size==='large')win.classList.add('large');
+      if(this.dataset.size==='compact')win.classList.add('compact');
+    });
+  });
+  $('ctlIdle').addEventListener('click',function(){clearTimeout(App.idleTimer);win.classList.add('idle')});
+  $('ctlEmpty').addEventListener('click',function(){
+    var going=!win.classList.contains('blank');
+    win.classList.toggle('blank',going);
+    $('empty').classList.toggle('hidden',!going);
+    scene.classList.toggle('hidden',going);
+    ['chip','meta','bar'].forEach(function(id){$(id).classList.toggle('hidden',going)});
+    if(going){
+      clearIdle();clearTimeout(App.idleTimer);
+      var favs=liveChannels();
+      $('emptyFavs').innerHTML=favs.map(function(c){return '<div class="avatar '+c.av+' is-live" title="'+c.name+'">'+c.ini+'</div>'}).join('');
+    }else{
+      scheduleIdle();
+    }
+  });
+  $('emptyPaste').addEventListener('click',function(e){e.stopPropagation();openLinkbox()});
+  $('ctlEnded').addEventListener('click',function(){
+    win.classList.add('ended');
+    clearIdle();clearTimeout(App.idleTimer);
+    var card=document.createElement('div');
+    card.className='card glass';
+    card.id='endedCard';
+    var favs=liveChannels().filter(function(c){return c.id!==App.cur.id}).slice(0,2);
+    card.innerHTML='<div class="h">Stream ended</div><div class="p">'+App.cur.name+' has ended their broadcast. Switch to another live favorite:</div>'
+      +'<div class="opts">'+favs.map(function(c){return '<div class="opt glass" data-id="'+c.id+'"><div class="avatar '+c.av+'">'+c.ini+'</div>'+c.name+'<span class="dot-live"></span></div>'}).join('')+'</div>';
+    win.appendChild(card);
+    card.querySelectorAll('.opt').forEach(function(el){
+      el.addEventListener('click',function(){
+        var c=channels.find(function(x){return x.id===this.dataset.id},this);
+        win.classList.remove('ended');
+        card.remove();
+        applyChannel(c,true);
+        scheduleIdle();
+      });
+    });
+  });
+  $('ctlLoading').addEventListener('click',function(){doLoading()});
+
+  // ---- keyboard ----
+  document.addEventListener('keydown',function(e){
+    if(App.pinned){App.pinned=false;clearIdle();scheduleIdle()}
+    if(e.key==='Escape'){
+      if(!$('linkbox').classList.contains('hidden')){closeLinkbox();return}
+      if(App.openPop){closeAllPops();return}
+    }
+    var tag=document.activeElement&&document.activeElement.tagName;
+    if(tag==='INPUT'||tag==='TEXTAREA')return;
+    if(e.key===' '){e.preventDefault();setPaused(!win.classList.contains('paused'))}
+    else if(e.key==='ArrowLeft'){step(-1)}
+    else if(e.key==='ArrowRight'){step(1)}
+    else if(e.key==='ArrowUp'){e.preventDefault();App.muted=false;$('mute').querySelector('use').setAttribute('href','#i-speaker');setVol(App.vol+5)}
+    else if(e.key==='ArrowDown'){e.preventDefault();App.muted=false;$('mute').querySelector('use').setAttribute('href','#i-speaker');setVol(App.vol-5)}
+    else if((e.metaKey&&e.key.toLowerCase()==='v')||(e.metaKey&&e.key.toLowerCase()==='l')){e.preventDefault();openLinkbox()}
+    else if(e.metaKey&&e.key.toLowerCase()==='d'){e.preventDefault();setFav(!App.favActive,true)}
+  });
+
+  buildRows();
+  scheduleIdle();
+})();
+</script>
+</body></html>

@@ -1,0 +1,195 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Immersive — System &amp; Settings — yt-media-player</title>
+<link rel="stylesheet" href="../glass.css"><link rel="stylesheet" href="immersive.css"><script src="../glass.js"></script>
+</head><body>
+<a class="back glass" href="../index.html"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>All mockups</a>
+
+<div class="page">
+
+<header>
+  <h1>Immersive — system &amp; settings</h1>
+  <p>The surfaces around the player: Settings, notifications, the optional menu bar companion, keyboard shortcuts, app icon, and build notes for the SwiftUI implementation.</p>
+  <div class="links">
+    <a class="pill-link glass" href="storyboard.html">Storyboard</a>
+    <a class="pill-link glass on" href="system.html">System &amp; settings</a>
+    <a class="pill-link glass" href="prototype.html">Interactive prototype</a>
+  </div>
+</header>
+
+<section>
+  <h2>1 · <span>Settings</span></h2>
+  <div class="row">
+    <div class="frame">
+      <div class="settings" style="width:400px;padding-top:44px">
+        <div class="lights"><i class="r"></i><i class="y"></i><i class="g"></i></div>
+        <div class="ttl">Settings</div>
+
+        <div class="lbl">General</div>
+        <div class="grp">
+          <div class="srow"><span class="grow">Launch at login</span><span class="sw off"></span></div>
+          <div class="srow"><div class="grow"><div>Keep window on top</div><div class="d">Floats above other windows</div></div><span class="sw"></span></div>
+          <div class="srow"><div class="grow"><div>Show in menu bar</div><div class="d">Adds a mini controller to the menu bar</div></div><span class="sw"></span></div>
+          <div class="srow"><span class="grow">Hide controls after</span><span class="pb">2 seconds<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></span></div>
+        </div>
+
+        <div class="lbl">Favorites</div>
+        <div class="grp">
+          <div class="srow"><span class="grow">Check live status every</span><span class="pb">5 minutes<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></span></div>
+          <div class="srow"><span class="grow">Notify when a favorite goes live</span><span class="sw"></span></div>
+          <div class="srow"><span class="grow">Skip offline favorites with ← →</span><span class="sw"></span></div>
+        </div>
+
+        <div class="lbl">Playback</div>
+        <div class="grp">
+          <div class="srow"><span class="grow">Default volume</span><div class="slider"><div class="fill" style="width:60%"></div><div class="thumb" style="left:60%"></div></div></div>
+          <div class="srow"><span class="grow">Quality</span><div class="seg"><span class="on">Auto</span><span>720p</span><span>480p</span><span>Audio</span></div></div>
+          <div class="srow"><span class="grow">Resume last stream on launch</span><span class="sw"></span></div>
+          <div class="srow"><span class="grow">Global shortcut: play/pause</span><span class="keyfield"><kbd>⌥</kbd><kbd>Space</kbd></span></div>
+        </div>
+      </div>
+      <div class="cap"><b>Standard macOS Settings window</b>Opens with <kbd>⌘,</kbd>. Toggles and pickers use system-standard controls; everything here is optional and defaults are sensible out of the box.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>2 · <span>Notifications</span></h2>
+  <div class="row">
+    <div class="frame">
+      <div class="notif glass">
+        <div class="ico"><svg><use href="#i-waves"/></svg></div>
+        <div class="txt">
+          <div class="app">YT Media Player</div>
+          <div class="title">Lofi Girl is live</div>
+          <div class="sub">lofi hip hop radio 📚 beats to relax/study to</div>
+        </div>
+        <button class="act glass">Listen</button>
+      </div>
+      <div class="cap"><b>Favorite goes live</b>Delivered via UNUserNotificationCenter, only when "Notify when a favorite goes live" is on. Clicking the notification (or "Listen") starts playing that stream.</div>
+    </div>
+    <div class="frame">
+      <div class="notif glass">
+        <div class="ico"><svg><use href="#i-waves"/></svg></div>
+        <div class="txt">
+          <div class="app">YT Media Player</div>
+          <div class="title">Stream ended</div>
+          <div class="sub">Lofi Girl went offline · 2 favorites are live</div>
+        </div>
+        <button class="act glass">Switch</button>
+      </div>
+      <div class="cap"><b>Current stream ends</b>Fires when the playing favorite goes offline, so you're never left staring at a frozen frame. "Switch" jumps to another live favorite.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>3 · <span>Menu bar extra (secondary feature)</span></h2>
+  <div class="row">
+    <div class="frame">
+      <div class="mbwrap">
+        <div class="menubar glass">
+          <span class="apple"></span><b>Finder</b><span>File</span><span>Edit</span><span>View</span>
+          <div class="r">
+            <span class="on"><svg><use href="#i-waves"/></svg></span>
+            <svg><use href="#i-speaker"/></svg>
+            <span>9:41 AM</span>
+          </div>
+        </div>
+        <div class="mbpop glass">
+          <div class="now">
+            <div class="art"><div class="scene"></div></div>
+            <div class="txt">
+              <div class="title">lofi hip hop radio 📚 beats to relax/study to</div>
+              <div class="sub"><span class="dot-live"></span>Lofi Girl · 31.2K</div>
+            </div>
+            <button class="btn sm active" title="Favorite"><svg><use href="#i-heart"/></svg></button>
+          </div>
+          <div class="ctl">
+            <button class="btn" title="Previous favorite"><svg><use href="#i-backward"/></svg></button>
+            <button class="btn lg primary" title="Pause"><svg><use href="#i-pause"/></svg></button>
+            <button class="btn" title="Next favorite"><svg><use href="#i-forward"/></svg></button>
+            <div class="vol">
+              <button class="btn sm muted" title="Mute"><svg><use href="#i-speaker"/></svg></button>
+              <div class="slider"><div class="fill" style="width:58%"></div><div class="thumb" style="left:58%"></div></div>
+            </div>
+          </div>
+          <hr>
+          <div class="crow sel"><div class="avatar av-a">LG</div><div class="txt"><div class="title">Lofi Girl</div><div class="sub"><span class="dot-live"></span>Live · 31.2K</div></div><span class="eq"><svg><use href="#i-waves"/></svg></span></div>
+          <div class="crow"><div class="avatar av-c">CR</div><div class="txt"><div class="title">Chillhop Radio</div><div class="sub"><span class="dot-live"></span>Live · 8.4K</div></div></div>
+          <div class="crow"><div class="avatar av-b">SB</div><div class="txt"><div class="title">Synthwave Boy</div><div class="sub"><span class="dot-live"></span>Live · 2.1K</div></div></div>
+          <hr>
+          <div class="mi">Show Player Window<span class="k">⌘0</span></div>
+        </div>
+      </div>
+      <div class="cap"><b>Companion, not the main UI</b>The menu bar icon animates while playing. Its popover gives play/pause, volume, and channel switching without hunting for the window. Off by default.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>4 · <span>Keyboard shortcuts</span></h2>
+  <div class="row">
+    <div class="frame" style="flex:1;min-width:420px">
+      <div class="keys glass">
+        <div class="h">Playback</div>
+        <div class="kk"><kbd>Space</kbd></div><div>Play / Pause</div>
+        <div class="kk"><kbd>↑</kbd><kbd>↓</kbd></div><div>Volume ±5%</div>
+        <div class="kk"><kbd>M</kbd></div><div>Mute</div>
+        <div class="kk"><kbd>←</kbd><kbd>→</kbd></div><div>Previous / next live favorite</div>
+
+        <div class="h">Streams</div>
+        <div class="kk"><kbd>⌘</kbd><kbd>V</kbd></div><div>Paste link &amp; play</div>
+        <div class="kk"><kbd>⌘</kbd><kbd>L</kbd></div><div>Show link field</div>
+        <div class="kk"><kbd>⌘</kbd><kbd>D</kbd></div><div>Add / remove favorite</div>
+        <div class="kk"><kbd>⌘</kbd><kbd>1…9</kbd></div><div>Jump to favorite N</div>
+
+        <div class="h">Window</div>
+        <div class="kk"><kbd>⌥</kbd><kbd>⌘</kbd><kbd>T</kbd></div><div>Keep on top</div>
+        <div class="kk"><kbd>⇧</kbd><kbd>⌘</kbd><kbd>A</kbd></div><div>Audio-only pill</div>
+        <div class="kk"><kbd>⌘</kbd><kbd>H</kbd></div><div>Hide controls</div>
+        <div class="kk"><kbd>⌘</kbd><kbd>0</kbd></div><div>Show player window</div>
+        <div class="kk"><kbd>⌘</kbd><kbd>,</kbd></div><div>Settings</div>
+        <div class="kk"><kbd>⌘</kbd><kbd>Q</kbd></div><div>Quit</div>
+      </div>
+      <div class="cap"><b>Global where sensible</b>Play/pause and volume work even when the app isn't frontmost, via a user-configurable global shortcut. Everything else is app-local.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>5 · <span>Dock &amp; app icon</span></h2>
+  <div class="row">
+    <div class="frame">
+      <div class="row" style="gap:20px;align-items:flex-end">
+        <div class="app-icon" style="width:96px;height:96px">
+          <div class="app-icon-glyph"><svg viewBox="0 0 24 24" style="width:48px;height:48px"><use href="#i-waves"/></svg></div>
+        </div>
+        <div class="app-icon" style="width:64px;height:64px">
+          <div class="app-icon-glyph"><svg viewBox="0 0 24 24" style="width:32px;height:32px"><use href="#i-waves"/></svg></div>
+        </div>
+      </div>
+      <div class="cap"><b>Icon idea: sound bars in a warm gradient</b>96pt and 64pt shown. The Dock icon can be hidden at runtime when "Show in menu bar" is on, via <span style="white-space:nowrap">LSUIElement</span> toggling.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>6 · <span>Technical notes</span></h2>
+  <div class="notes glass">
+    <h3>For the SwiftUI build</h3>
+    <ul>
+      <li><b>Window</b> — <code>NSWindow</code> with <code>.fullSizeContentView</code> and a transparent titlebar; traffic lights are shown/hidden along with the HUD.</li>
+      <li><b>Video</b> — a <code>WKWebView</code> loading the YouTube IFrame Player (no API key needed); playback is controlled via a JS <code>postMessage</code> bridge.</li>
+      <li><b>OPEN QUESTION</b> — YouTube's ToS limits background-audio hacks. Options: keep the player visible even in pill mode via a 1px-scaled view, or accept that video-off means paused audio.</li>
+      <li><b>OPEN QUESTION</b> — live status via oEmbed / a no-key page scrape, or the YouTube Data API v3 with a user-supplied key.</li>
+      <li><b>Favorites</b> — persisted in SwiftData or JSON under Application Support.</li>
+      <li><b>Media keys</b> — <code>MPNowPlayingInfoCenter</code> + <code>MPRemoteCommandCenter</code> drive Now Playing and hardware keys.</li>
+      <li><b>Keep on Top</b> — implemented with a <code>.floating</code> window level.</li>
+      <li><b>Menu bar</b> — an <code>NSStatusItem</code> hosts the icon and popover.</li>
+      <li><b>Glass</b> — Liquid Glass via <code>.glassEffect()</code> on macOS 26, with a Material fallback on earlier systems.</li>
+    </ul>
+  </div>
+</section>
+
+</div>
+</body></html>
