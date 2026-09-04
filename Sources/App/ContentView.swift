@@ -13,5 +13,15 @@ struct ContentView: View {
             HUDBarView(volume: $volume, isPlaying: true)
                 .padding(12)
         }
+        .overlay(alignment: .topTrailing) {
+            ChannelChipView(channel: SampleData.nowPlaying.channel)
+                .padding(10)
+        }
+        .overlay(alignment: .bottomLeading) {
+            NowPlayingMetaView(nowPlaying: SampleData.nowPlaying)
+                .padding(.leading, 16)
+                .padding(.bottom, 74)
+                .padding(.trailing, 16)
+        }
     }
 }
