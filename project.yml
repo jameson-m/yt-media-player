@@ -28,6 +28,16 @@ targets:
         CFBundleDisplayName: YT Media Player
         LSMinimumSystemVersion: "26.0"
         NSHumanReadableCopyright: ""
+  YTMediaPlayerTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - Tests
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+    dependencies:
+      - target: YTMediaPlayer
 schemes:
   YTMediaPlayer:
     build:
@@ -35,3 +45,6 @@ schemes:
         YTMediaPlayer: all
     run:
       config: Debug
+    test:
+      targets:
+        - YTMediaPlayerTests
