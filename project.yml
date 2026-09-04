@@ -1,0 +1,37 @@
+name: YTMediaPlayer
+options:
+  bundleIdPrefix: com.jamesonmcbride
+  deploymentTarget:
+    macOS: "26.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    SWIFT_STRICT_CONCURRENCY: minimal
+    MACOSX_DEPLOYMENT_TARGET: "26.0"
+    CODE_SIGN_IDENTITY: "-"
+    CODE_SIGN_STYLE: Manual
+    ENABLE_HARDENED_RUNTIME: NO
+targets:
+  YTMediaPlayer:
+    type: application
+    platform: macOS
+    sources:
+      - Sources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.jamesonmcbride.YTMediaPlayer
+        INFOPLIST_KEY_CFBundleDisplayName: "YT Media Player"
+    info:
+      path: Sources/Info.plist
+      properties:
+        CFBundleDisplayName: YT Media Player
+        LSMinimumSystemVersion: "26.0"
+        NSHumanReadableCopyright: ""
+schemes:
+  YTMediaPlayer:
+    build:
+      targets:
+        YTMediaPlayer: all
+    run:
+      config: Debug
